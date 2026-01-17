@@ -43,6 +43,7 @@ def clean_and_validate(lines):
             "tid": tid,
             "product": name,
             "qty": qty,
+            "date": date,
             "price": price,
             "customer": cid,
             "region": region
@@ -337,3 +338,34 @@ def customer_analysis(transactions):
     )
 
     return sorted_customers
+def daily_sales_trend(transactions):
+    """
+    Analyzes sales trends by date
+    Returns dictionary sorted by date
+    """
+    daily_data = {}
+
+    for t in transactions:
+        date = t["date"]
+        revenue = t["qty"] * t["price"]
+        customer = t["customer"]
+
+        if date not in daily_data:
+            daily_data[date] = {
+                "revenue": 0.0,
+                "transaction_count": 0,
+                "unique_customers": set()
+            }
+
+        daily_data[date]["revenue"] += revenue
+        daily_data[date]["transaction_count"] += 1
+        daily_data[date]["unique_customers"].add(customer)
+
+    # convert sets → counts
+    for date in daily_data:
+        daily_data[date]["unique_customers"] = len(
+            daily_data[date]["unique_customers"]
+        )
+
+    # sort by date
+    return dict(sorted(daily_data.items()))
