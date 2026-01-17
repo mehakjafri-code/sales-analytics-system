@@ -23,12 +23,7 @@ write_output("summary.txt", report)
 
 print("Total Revenue:", total_revenue)
 print("Final report saved to output/summary.txt")
-print(records[0])
-daily = daily_sales_trend(records)
 
-print("\nDAILY SALES TREND (sample):")
-for date, stats in list(daily.items())[:3]:
-    print(date, stats)
 
 
 
