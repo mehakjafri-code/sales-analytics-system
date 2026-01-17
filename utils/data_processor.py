@@ -215,3 +215,12 @@ def validate_and_filter(transactions, region=None, min_amount=None, max_amount=N
     summary["final_count"] = len(valid_transactions)
 
     return valid_transactions, invalid_count, summary
+def calculate_total_revenue(transactions):
+    """
+    Calculates total revenue from all transactions
+    Returns: float
+    """
+    total = 0.0
+    for t in transactions:
+        total += t["qty"] * t["price"]
+    return total
