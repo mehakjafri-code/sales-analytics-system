@@ -296,3 +296,44 @@ def top_selling_products(transactions, n=5):
 
     # Step 4: Return top n
     return product_list[:n]
+def customer_analysis(transactions):
+    """
+    Analyzes customer purchase patterns
+    Returns: dictionary of customer statistics
+    """
+    customers = {}
+
+    # Step 1: Aggregate data per customer
+    for t in transactions:
+        customer = t["customer"]
+        product = t["product"]
+        amount = t["qty"] * t["price"]
+
+        if customer not in customers:
+            customers[customer] = {
+                "total_spent": 0.0,
+                "purchase_count": 0,
+                "products_bought": set()
+            }
+
+        customers[customer]["total_spent"] += amount
+        customers[customer]["purchase_count"] += 1
+        customers[customer]["products_bought"].add(product)
+
+    # Step 2: Calculate average order value + clean product list
+    for customer, data in customers.items():
+        data["avg_order_value"] = round(
+            data["total_spent"] / data["purchase_count"], 2
+        )
+        data["products_bought"] = list(data["products_bought"])
+
+    # Step 3: Sort customers by total_spent (descending)
+    sorted_customers = dict(
+        sorted(
+            customers.items(),
+            key=lambda x: x[1]["total_spent"],
+            reverse=True
+        )
+    )
+
+    return sorted_customers
