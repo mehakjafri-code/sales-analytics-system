@@ -1,0 +1,71 @@
+TransactionID|Date|ProductID|ProductName|Quantity|UnitPrice|CustomerID|Region|API_Category|API_Brand|API_Rating|API_Match
+T018|2024-12-29|None|USB Cable|8|173.0|C009|South|groceries|None|3.13|True
+T063|2024-12-07|None|Laptop Charger|6|1916.0|C022|East|kitchen-accessories|None|3.09|True
+T023|2024-12-09|None|Wireless Mouse|9|523.0|C022|North|groceries|None|2.53|True
+T059|2024-12-29|None|MouseWireless|4|1056.0|C010|South|kitchen-accessories|None|4.02|True
+T035|2024-12-08|None|Mouse|4|431.0|C011|North|groceries|None|4.81|True
+T061|2024-12-10|None|Wireless Mouse|2|775.0|C009|North|kitchen-accessories|None|3.86|True
+T057|2024-12-15|None|LaptopPremium|10|81896.0|C004|North|kitchen-accessories|None|3.04|True
+T034|2024-12-22|None|USB Cable|6|324.0|C029|West|groceries|None|4.82|True
+T050|2024-12-02|None|MonitorLED|10|9997.0|C024|East|kitchen-accessories|None|3.9|True
+T024|2024-12-25|None|Wireless Mouse|5|1812.0|C011|North|groceries|None|3.78|True
+T004|2024-12-07|None|Wireless Mouse|9|1359.0|C008|West|beauty|Chic Cosmetics|4.36|True
+T068|2024-12-02|None|Wireless Mouse|6|1692.0|C018|South|kitchen-accessories|None|2.79|True
+T066|2024-12-06|None|Webcam|8|4259.0|C023|West|kitchen-accessories|None|4.82|True
+T064|2024-12-16|None|Wireless Mouse|5|604.0|C003|West|kitchen-accessories|None|3.26|True
+T045|2024-12-26|None|External Hard Drive|9|3802.0|C002|North|home-decoration|None|4.67|True
+T015|2024-12-30|None|Webcam|9|2899.0|C022|East|furniture|Bath Trends|3.59|True
+T055|2024-12-07|None|WebcamHD|6|2977.0|C009|West|kitchen-accessories|None|3.09|True
+T002|2024-12-22|None|Mouse|9|478.0|C019|West|beauty|Glamour Beauty|2.86|True
+T051|2024-12-02|None|LaptopPremium|10|76246.0|C017|South|kitchen-accessories|None|4.56|True
+T005|2024-12-09|None|Laptop Charger|1|3054.0|C026|South|beauty|Nail Couture|4.32|True
+T007|2024-12-03|None|Mouse|7|498.0|C012|East|fragrances|Chanel|4.26|True
+T010|2024-12-07|None|Laptop Charger|2|1593.0|C022|South|fragrances|Gucci|2.74|True
+T032|2024-12-22|None|Keyboard|8|1476.0|C009|West|groceries|None|2.61|True
+T008|2024-12-09|None|Laptop Charger|1|2994.0|C015|North|fragrances|Dior|3.8|True
+T060|2024-12-27|None|External Hard Drive1TB|9|8763.0|C010|North|kitchen-accessories|None|3.21|True
+T062|2024-12-24|None|Mouse|9|618.0|C009|East|kitchen-accessories|None|4.71|True
+T003|2024-12-01|None|Laptop|2|59328.0|C008|North|beauty|Velvet Touch|4.64|True
+T022|2024-12-20|None|USB Cable|2|297.0|C013|West|groceries|None|4.55|True
+T046|2024-12-30|None|MouseWireless|4|640.0|C014|West|home-decoration|None|3.01|True
+T049|2024-12-22|None|Wireless MouseGaming|8|817.0|C007|East|kitchen-accessories|None|4.46|True
+T006|2024-12-11|None|USB Cable|5|179.0|C007|East|fragrances|Calvin Klein|4.37|True
+T011|2024-12-03|None|Webcam|4|2413.0|C013|East|furniture|Annibale Colombo|4.77|True
+T031|2024-12-24|None|Mouse|8|441.0|C025|South|groceries|None|3.53|True
+T033|2024-12-30|None|Monitor|9|14591.0|C023|East|groceries|None|4.95|True
+T058|2024-12-07|None|Wireless MouseGaming|9|1043.0|C005|East|kitchen-accessories|None|3.11|True
+T029|2024-12-11|None|Laptop Charger|8|1539.0|C004|East|groceries|None|3.94|True
+T030|2024-12-08|None|Webcam|1|2986.0|C029|North|groceries|None|4.93|True
+T021|2024-12-25|None|Mouse|1|524.0|C005|South|groceries|None|4.07|True
+T070|2024-12-07|None|Headphones|4|6463.0|C004|East|kitchen-accessories|None|4.42|True
+T028|2024-12-25|None|Headphones|3|5418.0|C025|North|groceries|None|3.39|True
+T014|2024-12-24|None|Wireless Mouse|4|834.0|C015|West|furniture|Knoll|4.88|True
+T019|2024-12-24|None|Monitor|9|16609.0|C024|West|groceries|None|3.19|True
+T054|2024-12-03|None|Laptop Charger65W|7|2846.0|C019|East|kitchen-accessories|None|4.63|True
+T001|2024-12-01|None|Mouse|5|801.0|C008|South|beauty|Essence|2.56|True
+T036|2024-12-18|None|Laptop Charger|4|2705.0|C008|North|groceries|None|4.18|True
+T020|2024-12-13|None|Laptop Charger|6|1949.0|C005|West|groceries|None|4.8|True
+T037|2024-12-23|None|Mouse|1|768.0|C003|North|groceries|None|4.2|True
+T012|2024-12-21|None|External Hard Drive|6|4332.0|C012|East|furniture|Annibale Colombo|3.92|True
+T048|2024-12-13|None|LaptopPremium|5|74819.0|C010|West|kitchen-accessories|None|3.27|True
+T044|2024-12-09|None|Keyboard|8|1823.0|C028|North|home-decoration|None|4.53|True
+T025|2024-12-14|None|Webcam|3|3858.0|C001|East|groceries|None|3.25|True
+T027|2024-12-27|None|Webcam|9|4494.0|C007|South|groceries|None|3.97|True
+T013|2024-12-22|None|Monitor|5|10339.0|C020|South|furniture|Furniture Co.|2.87|True
+T017|2024-12-07|None|Mouse|10|944.0|C007|West|groceries|None|4.47|True
+T038|2024-12-03|None|Headphones|9|2949.0|C009|West|groceries|None|3.18|True
+T052|2024-12-17|None|LaptopPremium|2|57178.0|C003|North|kitchen-accessories|None|4.05|True
+T042|2024-12-02|None|Mouse|7|994.0|C026|North|groceries|None|4.96|True
+T053|2024-12-13|None|MonitorLED|2|16067.0|C019|North|kitchen-accessories|None|3.7|True
+T040|2024-12-07|None|USB Cable|2|149.0|C022|West|groceries|None|3.08|True
+T065|2024-12-02|None|Webcam|1|3366.0|C025|South|kitchen-accessories|None|4.93|True
+T039|2024-12-18|None|Monitor|3|23488.0|C008|West|groceries|None|4.75|True
+T016|2024-12-08|None|Laptop|1|65673.0|C013|East|groceries|None|4.19|True
+T041|2024-12-14|None|Headphones|7|4825.0|C028|North|groceries|None|2.69|True
+T043|2024-12-07|None|Monitor|4|22700.0|C005|West|home-decoration|None|3.16|True
+T009|2024-12-03|None|USB Cable|9|250.0|C027|East|fragrances|Dolce & Gabbana|3.96|True
+T056|2024-12-22|None|KeyboardMechanical|5|2672.0|C011|North|kitchen-accessories|None|4.11|True
+T047|2024-12-07|None|External Hard Drive1TB|7|3480.0|C006|West|home-decoration|None|3.55|True
+T026|2024-12-25|None|Wireless Mouse|3|1539.0|C030|North|groceries|None|3.66|True
+T069|2024-12-05|None|USB Cable|1|257.0|C012|North|kitchen-accessories|None|3.65|True
+T067|2024-12-01|None|Wireless Mouse|2|654.0|C029|South|kitchen-accessories|None|2.64|True
