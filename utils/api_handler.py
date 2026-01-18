@@ -50,3 +50,28 @@ def fetch_all_products():
     except Exception as e:
         print("Failed to fetch products:", e)
         return []
+def create_product_mapping(api_products):
+    """
+    Creates a mapping of product IDs to product info
+
+    Parameters: api_products from fetch_all_products()
+
+    Returns: dictionary mapping product IDs to info
+    """
+
+    product_mapping = {}
+
+    for product in api_products:
+        product_id = product.get("id")
+
+        if product_id is None:
+            continue
+
+        product_mapping[product_id] = {
+            "title": product.get("title"),
+            "category": product.get("category"),
+            "brand": product.get("brand"),
+            "rating": product.get("rating")
+        }
+
+    return product_mapping
