@@ -437,3 +437,47 @@ def low_performing_products(transactions, threshold=10):
     low_products.sort(key=lambda x: x[1])
 
     return low_products
+def category_analysis(products):
+    """
+    Analyzes products by category
+
+    Returns: dictionary
+    """
+
+    category_data = {}
+
+    for p in products:
+        category = p["category"]
+        price = p["price"]
+
+        if category not in category_data:
+            category_data[category] = {
+                "product_count": 0,
+                "total_price": 0
+            }
+
+        category_data[category]["product_count"] += 1
+        category_data[category]["total_price"] += price
+
+    # calculate average price
+    for category in category_data:
+        count = category_data[category]["product_count"]
+        total = category_data[category]["total_price"]
+        category_data[category]["avg_price"] = round(total / count, 2)
+
+    return category_data
+def low_stock_products(products, threshold=20):
+    """
+    Finds products with low stock
+
+    Returns: list of tuples
+    (title, stock)
+    """
+
+    low_stock = []
+
+    for p in products:
+        if p["stock"] < threshold:
+            low_stock.append((p["title"], p["stock"]))
+
+    return sorted(low_stock, key=lambda x: x[1])
