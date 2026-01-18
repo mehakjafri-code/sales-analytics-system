@@ -481,3 +481,163 @@ def low_stock_products(products, threshold=20):
             low_stock.append((p["title"], p["stock"]))
 
     return sorted(low_stock, key=lambda x: x[1])
+from datetime import datetime
+
+def generate_sales_report(transactions, enriched_transactions, output_file="output/sales_report.txt"):
+    report_lines = []
+
+    # ================= HEADER =================
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    report_lines.append("=" * 44)
+    report_lines.append("       SALES ANALYTICS REPORT")
+    report_lines.append(f"     Generated: {now}")
+    report_lines.append(f"     Records Processed: {len(transactions)}")
+    report_lines.append("=" * 44)
+    report_lines.append("")
+
+    from utils.data_processor import (
+        calculate_total_revenue,
+        region_wise_sales,
+        top_selling_products,
+        customer_analysis,
+        daily_sales_trend,
+        find_peak_sales_day,
+        low_performing_products,
+    )
+
+    # ================= OVERALL SUMMARY =================
+    total_revenue = calculate_total_revenue(transactions)
+    total_txns = len(transactions)
+    avg_order = total_revenue / total_txns if total_txns else 0
+
+    dates = [t["date"] for t in transactions]
+    start_date, end_date = min(dates), max(dates)
+
+    report_lines.extend([
+        "OVERALL SUMMARY",
+        "-" * 44,
+        f"Total Revenue:        ₹{total_revenue:,.2f}",
+        f"Total Transactions:   {total_txns}",
+        f"Average Order Value:  ₹{avg_order:,.2f}",
+        f"Date Range:           {start_date} to {end_date}",
+        ""
+    ])
+
+    # ================= REGION PERFORMANCE =================
+    report_lines.append("REGION-WISE PERFORMANCE")
+    report_lines.append("-" * 44)
+
+    region_stats = region_wise_sales(transactions)
+    for region, stats in region_stats.items():
+        report_lines.append(
+            f"{region:<10} ₹{stats['total_sales']:>12,.2f} "
+            f"{stats['percentage']:>6.2f}%  {stats['transaction_count']}"
+        )
+    report_lines.append("")
+
+    # ================= TOP PRODUCTS =================
+    report_lines.append("TOP 5 PRODUCTS")
+    report_lines.append("-" * 44)
+
+    for i, (name, qty, revenue) in enumerate(top_selling_products(transactions, 5), 1):
+        report_lines.append(f"{i}. {name} | Qty: {qty} | ₹{revenue:,.2f}")
+    report_lines.append("")
+
+    # ================= DAILY SALES =================
+    report_lines.append("DAILY SALES TREND")
+    report_lines.append("-" * 44)
+
+    daily = daily_sales_trend(transactions)
+    for date, stats in daily.items():
+        report_lines.append(
+            f"{date} | ₹{stats['revenue']:,.2f} | "
+            f"{stats['transaction_count']} txns | "
+            f"{stats['unique_customers']} customers"
+        )
+    report_lines.append("")
+
+    # ================= PERFORMANCE =================
+    peak_date, peak_revenue, peak_txn = find_peak_sales_day(transactions)
+    report_lines.append(
+        f"Best Selling Day: {peak_date} "
+        f"(₹{peak_revenue:,.2f}, {peak_txn} txns)"
+    )
+
+    low_products = low_performing_products(transactions)
+    if low_products:
+        report_lines.append("Low Performing Products:")
+        for name, qty, rev in low_products:
+            report_lines.append(f"- {name} | Qty: {qty} | ₹{rev:,.2f}")
+    else:
+        report_lines.append("No low performing products.")
+    report_lines.append("")
+
+    # ================= API ENRICHMENT =================
+    matched = [t for t in enriched_transactions if t.get("API_Match")]
+    failed = [t for t in enriched_transactions if not t.get("API_Match")]
+
+    success_rate = (len(matched) / len(enriched_transactions) * 100) if enriched_transactions else 0
+
+    report_lines.append("API ENRICHMENT SUMMARY")
+    report_lines.append("-" * 44)
+    report_lines.append(f"Total Enriched Records: {len(enriched_transactions)}")
+    report_lines.append(f"Successful Enrichments: {len(matched)}")
+    report_lines.append(f"Success Rate: {success_rate:.2f}%")
+
+    if failed:
+        failed_products = sorted(
+            set(t.get("ProductName") or t.get("product", "UNKNOWN") for t in failed)
+        )
+        report_lines.append("Products Not Enriched:")
+        for p in failed_products:
+            report_lines.append(f"- {p}")
+    else:
+        report_lines.append("All products enriched successfully.")
+
+    # ================= WRITE FILE =================
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write("\n".join(report_lines))
+
+
+def enrich_sales_data(transactions, product_mapping):
+    enriched = []
+
+    for t in transactions:
+        new_t = t.copy()
+        product_id = t.get("ProductID")
+
+        try:
+            numeric_id = int(product_id.replace("P", "")) if product_id else None
+        except:
+            numeric_id = None
+
+        product_info = product_mapping.get(numeric_id)
+
+        if product_info:
+            new_t["API_Category"] = product_info.get("category")
+            new_t["API_Brand"] = product_info.get("brand")
+            new_t["API_Rating"] = product_info.get("rating")
+            new_t["API_Match"] = True
+        else:
+            new_t["API_Category"] = None
+            new_t["API_Brand"] = None
+            new_t["API_Rating"] = None
+            new_t["API_Match"] = False
+
+        enriched.append(new_t)
+
+    # save file
+    save_enriched_data(enriched)
+    return enriched
+def save_enriched_data(enriched_transactions, filename='data/enriched_sales_data.txt'):
+    headers = [
+        "TransactionID","Date","ProductID","ProductName",
+        "Quantity","UnitPrice","CustomerID","Region",
+        "API_Category","API_Brand","API_Rating","API_Match"
+    ]
+
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write("|".join(headers) + "\n")
+        for t in enriched_transactions:
+            row = [str(t.get(h, "")) for h in headers]
+            f.write("|".join(row) + "\n")
